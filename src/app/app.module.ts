@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 
 import { AngularfireModule } from './imports/angularfire.module';
 import { AngularmaterialModule } from './imports/angularmaterial.module';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 
 
@@ -18,6 +20,12 @@ import { AngularmaterialModule } from './imports/angularmaterial.module';
     AppRoutingModule,
     AngularfireModule,
     AngularmaterialModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]
