@@ -15,7 +15,9 @@ import { AngularmaterialModule } from './imports/angularmaterial.module';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AngularfireModule,
+    AngularmaterialModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
