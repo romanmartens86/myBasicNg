@@ -30,9 +30,7 @@ $dark-theme: mat.define-dark-theme((
 ));
 
 
-
 // Define typography for dark and light theme
-
 
 
 
@@ -46,8 +44,6 @@ $dark-theme: mat.define-dark-theme((
  @include mat.core-color($light-theme);
  @include mat.button-color($light-theme);
 }
-
-
 
 
 
