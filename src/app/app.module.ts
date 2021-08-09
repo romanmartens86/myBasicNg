@@ -10,13 +10,15 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LandingComponent } from './books/landing/landing.component';
+import { ToolbarComponent } from './books/toolbar/toolbar.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LandingComponent
+    LandingComponent,
+    ToolbarComponent
   ],
   imports: [
     BrowserModule,
