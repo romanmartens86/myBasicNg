@@ -1,16 +1,22 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { AngularfireModule } from './imports/angularfire.module';
 import { AngularmaterialModule } from './imports/angularmaterial.module';
-import { ServiceWorkerModule } from '@angular/service-worker';
+
+// import QR-Code Scanner
+import { ZXingScannerModule } from '@zxing/ngx-scanner';
+
+// private Components
 import { environment } from '../environments/environment';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LandingComponent } from './books/landing/landing.component';
 import { ToolbarComponent } from './books/toolbar/toolbar.component';
+import { ScanningComponent } from './books/scanning/scanning.component';
 
 
 
@@ -18,7 +24,8 @@ import { ToolbarComponent } from './books/toolbar/toolbar.component';
   declarations: [
     AppComponent,
     LandingComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    ScanningComponent
   ],
   imports: [
     BrowserModule,
@@ -32,6 +39,7 @@ import { ToolbarComponent } from './books/toolbar/toolbar.component';
       registrationStrategy: 'registerWhenStable:30000'
     }),
     BrowserAnimationsModule,
+    ZXingScannerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

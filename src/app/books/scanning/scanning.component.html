@@ -1,0 +1,11 @@
+<p>scanning works!</p>
+
+<h1>my Scanner:</h1>
+
+<div>
+    <zxing-scanner *ngIf='scannerEnabled' #scanner (scanSuccess)="scanSuccessHandler($event)">
+    </zxing-scanner>
+    <button mat-fab color="primary" aria-label="Scan Icon">
+        <mat-icon>flip</mat-icon>
+    </button>
+</div>
