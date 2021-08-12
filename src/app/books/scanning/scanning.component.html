@@ -2,10 +2,12 @@
 
 <h1>my Scanner:</h1>
 
-<div>
+<div fxLayout="row" fxLayoutAlign="space-around">
     <zxing-scanner *ngIf='scannerEnabled' #scanner (scanSuccess)="scanSuccessHandler($event)">
     </zxing-scanner>
-    <button mat-fab color="primary" aria-label="Scan Icon">
-        <mat-icon>flip</mat-icon>
-    </button>
+    <div>
+        <button mat-fab color="primary" aria-label="Scan Icon">
+            <mat-icon>flip</mat-icon>
+        </button>
+    </div>
 </div>
