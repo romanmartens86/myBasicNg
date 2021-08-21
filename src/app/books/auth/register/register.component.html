@@ -1,0 +1,21 @@
+<div fxLayout="column center">
+    <h1>Registrierung:</h1>
+
+    <div>
+        <form [formGroup]='form' (ngSubmit)="onSubmit()" >
+    
+            <mat-form-field>
+                <input matInput type="text"
+                formControlName="fullname"
+                [ngClass]="{'is-invalid': submitted && f.fullname.errors}"
+                placeholder="Voller Name"
+                >
+            </mat-form-field>
+            <mat-error *ngIf="submitted && f.fullname.errors && f.fullname.errors.required">
+                Bitte gebe einen Namen an.
+            </mat-error>
+    <!-- https://www.bezkoder.com/angular-12-form-validation/ -->
+    
+        </form>
+    </div>
+</div>

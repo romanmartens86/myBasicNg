@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,11 +14,17 @@ import { AngularmaterialModule } from './imports/angularmaterial.module';
 // import QR-Code Scanner
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 
+// private Services
+import { AuthService } from './services/auth.service';
+
 // private Components
 import { environment } from '../environments/environment';
 import { LandingComponent } from './books/landing/landing.component';
 import { ToolbarComponent } from './books/toolbar/toolbar.component';
 import { ScanningComponent } from './books/scanning/scanning.component';
+import { AuthComponent } from './books/auth/auth.component';
+import { LoginComponent } from './books/auth/login/login.component';
+import { RegisterComponent } from './books/auth/register/register.component';
 
 
 
@@ -26,7 +33,10 @@ import { ScanningComponent } from './books/scanning/scanning.component';
     AppComponent,
     LandingComponent,
     ToolbarComponent,
-    ScanningComponent
+    ScanningComponent,
+    AuthComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -42,8 +52,10 @@ import { ScanningComponent } from './books/scanning/scanning.component';
     BrowserAnimationsModule,
     ZXingScannerModule,
     FlexLayoutModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
