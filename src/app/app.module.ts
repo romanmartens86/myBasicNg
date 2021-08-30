@@ -25,6 +25,7 @@ import { ScanningComponent } from './books/scanning/scanning.component';
 import { AuthComponent } from './books/auth/auth.component';
 import { LoginComponent } from './books/auth/login/login.component';
 import { RegisterComponent } from './books/auth/register/register.component';
+import { SocialComponent } from './books/auth/social/social.component';
 
 
 
@@ -36,7 +37,8 @@ import { RegisterComponent } from './books/auth/register/register.component';
     ScanningComponent,
     AuthComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    SocialComponent
   ],
   imports: [
     BrowserModule,

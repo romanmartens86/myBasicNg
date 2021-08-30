@@ -49,8 +49,10 @@ $dark-theme: mat.define-dark-theme((
 }
 
 
-html, body { height: 100%; }
+html, body { height: 100vh; }
 body { margin: 0;
+  padding: 0;
+  width: 100%;
     font-family: Quicksand,
     sans-serif;
 }

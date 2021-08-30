@@ -1,68 +1,64 @@
-<div fxLayout="column center">
-    <div>
-        <form [formGroup]='form' (ngSubmit)="onSubmit()">
+<form [formGroup]='form' (ngSubmit)="onSubmit()" fxLayout="column center" style="width: 350px;">
 
-            <!-- ***** -->
-            <!-- Name  -->
-            <!-- ***** -->
-            <mat-form-field>
-                <input matInput type="text" formControlName="fullname"
-                    [ngClass]="{'is-invalid': submitted && f.fullname.errors}" placeholder="Voller Name:">
-            </mat-form-field>
-            <mat-error *ngIf="submitted && f.fullname.errors && f.fullname.errors.required">
-                Bitte gebe einen Namen an.
-            </mat-error>
-            <mat-error *ngIf="submitted && f.fullname.errors && f.fullname.errors.minLength">
-                Bitte gebe einen Namen an.
-            </mat-error>
-            <!-- https://www.bezkoder.com/angular-12-form-validation/ -->
+    <!-- ***** -->
+    <!-- Name  -->
+    <!-- ***** -->
+    <mat-form-field class="inputField">
+        <input matInput type="text" formControlName="fullname"
+            [ngClass]="{'is-invalid': submitted && f.fullname.errors}" placeholder="Voller Name:">
+    </mat-form-field>
+    <mat-error *ngIf="submitted && f.fullname.errors && f.fullname.errors.required">
+        Bitte gebe einen Namen an.
+    </mat-error>
+    <mat-error *ngIf="submitted && f.fullname.errors && f.fullname.errors.minLength">
+        Bitte gebe einen Namen an.
+    </mat-error>
+    <!-- https://www.bezkoder.com/angular-12-form-validation/ -->
 
 
-            <!-- ***** -->
-            <!-- Email -->
-            <!-- ***** -->
-            <mat-form-field>
-                <input matInput type="text" formControlName="email"
-                    [ngClass]="{'is-invalid': submitted && f.email.errors}" placeholder="Email-Adresse:">
-            </mat-form-field>
-            <mat-error *ngIf="submitted && f.email.errors && f.email.errors.required">
-                Bitte gebe eine gültige Mail-Adresse an.
-            </mat-error>
-            <mat-error *ngIf="submitted && f.email.errors && f.email.errors.email">
-                Bitte gebe eine gültige Mail-Adresse an.
-            </mat-error>
+    <!-- ***** -->
+    <!-- Email -->
+    <!-- ***** -->
+    <mat-form-field class="inputField">
+        <input matInput type="text" formControlName="email" [ngClass]="{'is-invalid': submitted && f.email.errors}"
+            placeholder="Email-Adresse:">
+    </mat-form-field>
+    <mat-error *ngIf="f.email.touched && f.email.errors && f.email.errors.required">
+        Bitte gebe eine gültige Mail-Adresse an.
+    </mat-error>
+    <mat-error *ngIf="f.email.touched && f.email.errors && f.email.errors.email">
+        Bitte gebe eine gültige Mail-Adresse an.
+    </mat-error>
 
-            <!-- ******** -->
-            <!-- Password -->
-            <!-- ******** -->
-            <mat-form-field>
-                <input matInput type="text" formControlName="password"
-                    [ngClass]="{'is-invalid': submitted && f.password.errors}" placeholder="Passwort:">
-            </mat-form-field>
-            <mat-error *ngIf="submitted && f.password.errors && f.password.errors.required">
-                Bitte gebe ein Passwort an.
-            </mat-error>
-            <mat-error *ngIf="submitted && f.password.errors && f.password.errors.minLength">
-                Dein Passwort braucht mindestens 6 Zeichen.
-            </mat-error>
-            <mat-error *ngIf="submitted && f.password.errors && f.password.errors.maxLength">
-                Dein Passwort muss weniger als 40 Zeichen haben. Was willst du überhaupt mit so einem riesen Passwort?
-            </mat-error>
+    <!-- ******** -->
+    <!-- Password -->
+    <!-- ******** -->
+    <mat-form-field class="inputField">
+        <input matInput type="text" formControlName="password"
+            [ngClass]="{'is-invalid': submitted && f.password.errors}" placeholder="Passwort:">
+    </mat-form-field>
+    <mat-error *ngIf="f.password.touched && f.password.errors && f.password.errors.required">
+        Bitte gebe ein Passwort an.
+    </mat-error>
+    <mat-error *ngIf="f.password.touched && f.password.errors && f.password.errors.minLength">
+        Dein Passwort braucht mindestens 6 Zeichen.
+    </mat-error>
+    <mat-error *ngIf="f.password.touched && f.password.errors && f.password.errors.maxLength">
+        Dein Passwort muss weniger als 40 Zeichen haben. Was willst du überhaupt mit so einem riesen Passwort?
+    </mat-error>
 
-            <!-- **************** -->
-            <!-- confirm Password -->
-            <!-- **************** -->
-            <mat-form-field>
-                <input matInput type="text" formControlName="confirmPassword"
-                    [ngClass]="{'is-invalid': submitted && f.confirmPassword.errors}" placeholder="Bestätige dein Passwort:">
-            </mat-form-field>
-            <mat-error *ngIf="submitted && f.confirmPassword.errors && f.confirmPassword.errors.required">
-                Bitte gebe das Passwort an.
-            </mat-error>
-            <mat-error *ngIf="submitted && f.confirmPassword.errors && f.confirmPassword.errors.matching">
-                Beide Passwörter müssen überein stimmen. Gebe bitte das gleiche Passwort hier erneut an.
-            </mat-error>
+    <!-- **************** -->
+    <!-- confirm Password -->
+    <!-- **************** -->
+    <mat-form-field class="inputField">
+        <input matInput type="text" formControlName="confirmPassword"
+            [ngClass]="{'is-invalid': submitted && f.confirmPassword.errors}" placeholder="Bestätige dein Passwort:">
+    </mat-form-field>
+    <mat-error *ngIf="f.confirmPassword.touched && f.confirmPassword.errors && f.confirmPassword.errors.required">
+        Bitte gebe das Passwort an.
+    </mat-error>
+    <mat-error *ngIf="f.confirmPassword.touched && f.confirmPassword.errors && f.confirmPassword.errors.matching">
+        Beide Passwörter müssen überein stimmen. Gebe bitte das gleiche Passwort hier erneut an.
+    </mat-error>
 
-        </form>
-    </div>
-</div>
+</form>
