@@ -26,6 +26,8 @@ import { AuthComponent } from './books/auth/auth.component';
 import { LoginComponent } from './books/auth/login/login.component';
 import { RegisterComponent } from './books/auth/register/register.component';
 import { SocialComponent } from './books/auth/social/social.component';
+import { ThanksComponent } from './books/overhead/thanks/thanks.component';
+import { LegalComponent } from './books/overhead/legal/legal.component';
 
 
 
@@ -38,7 +40,9 @@ import { SocialComponent } from './books/auth/social/social.component';
     AuthComponent,
     LoginComponent,
     RegisterComponent,
-    SocialComponent
+    SocialComponent,
+    ThanksComponent,
+    LegalComponent
   ],
   imports: [
     BrowserModule,
