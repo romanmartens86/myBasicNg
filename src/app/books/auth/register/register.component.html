@@ -1,3 +1,5 @@
+
+
 <h1 style="text-align: center;">Registrierung:</h1>
 
 <form [formGroup]='form' (ngSubmit)="onSubmit()" fxLayout="column center">
@@ -62,5 +64,26 @@
     <mat-error *ngIf="f.confirmPassword.touched && f.confirmPassword.errors && f.confirmPassword.errors.matching">
         Beide Passwörter müssen überein stimmen. Gebe bitte das gleiche Passwort hier erneut an.
     </mat-error>
+
+
+
+
+    <div class="inputField">
+        <h3>
+            Bitte lese dir die <a href="">Infos</a> durch.
+            Wenn du verstanden hast und einverstanden bist, gehts weiter.
+        </h3>
+        <mat-checkbox formControlName="acceptTerms">Bin einverstanden!</mat-checkbox>
+
+        <mat-error
+            *ngIf="submitted || (f.acceptTerms.touched && f.acceptTerms.errors && f.acceptTerms.errors.required)">
+            Bitte bestätige die Bedingungen vor der Registrierung.
+        </mat-error>
+    </div>
+
+
+    <div style="text-align: center; margin-top: 20px;">
+        <button mat-raised-button color="primary">Anmelden</button>
+    </div>
 
 </form>
