@@ -1,19 +1,16 @@
-<div>
+<img src="../../../assets/Icons/icon-192x192.png" alt="Logo Schule"
+    style="max-width: 50%; margin: auto; display: block; padding-top: 10%;">
 
-    <img src="../../../assets/Icons/icon-192x192.png" alt="Logo Schule"
-        style="max-width: 50%; margin: auto; display: block; padding-top: 10%;">
-
-    <div style="width: 350px; margin: auto;">
-        <app-login></app-login>
-    </div>
+<div style="width: 350px; margin: auto;">
+    <app-login (successEmitter)="onLoginCompleted()"></app-login>
+</div>
 
 
-    <div style="width: 350px; margin: auto;">
-        <app-register></app-register>
-    </div>
+<div style="width: 350px; margin: auto;">
+    <app-register (successEmitter)="onLoginCompleted()"></app-register>
+</div>
 
 
-    <div style="width: 350px; margin: auto; margin-top: 10%;">
-        <app-social></app-social>
-    </div>
+<div style="width: 350px; margin: auto; margin-top: 10%;">
+    <app-social (successEmitter)="onLoginCompleted()"></app-social>
 </div>

@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+import { AuthService } from 'src/app/services/auth.service';
 import Validation from '../../../classes/validation';
 
 @Component({
@@ -8,11 +10,15 @@ import Validation from '../../../classes/validation';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
+
+  @Output() successEmitter = new EventEmitter();
+
   form!: FormGroup;
   submitted: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
+    private authServ: AuthService,
   ) { }
 
   ngOnInit(): void {
@@ -24,10 +30,10 @@ export class RegisterComponent implements OnInit {
             Validators.minLength(6),
           ]
         ],
-        email: ['', 
+        email: ['',
           [
-          Validators.required,
-          Validators.email
+            Validators.required,
+            Validators.email
           ]
         ],
         password: [
@@ -58,12 +64,9 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    console.log(JSON.stringify(this.form.value, null, 2));
-  }
+    this.authServ.doRegister(this.f.email.value, this.f.password.value)
+      .then(res => this.successEmitter.emit(),
+        err => { console.log(err) });
 
-  onReset(): void {
-    this.submitted = false;
-    this.form.reset();
   }
-
 }

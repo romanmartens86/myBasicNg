@@ -38,7 +38,7 @@
     <!-- Password -->
     <!-- ******** -->
     <mat-form-field class="inputField">
-        <input matInput type="text" formControlName="password"
+        <input matInput type="password" formControlName="password"
             [ngClass]="{'is-invalid': submitted && f.password.errors}" placeholder="Passwort:">
     </mat-form-field>
     <mat-error *ngIf="f.password.touched && f.password.errors && f.password.errors.required">
@@ -55,7 +55,7 @@
     <!-- confirm Password -->
     <!-- **************** -->
     <mat-form-field class="inputField">
-        <input matInput type="text" formControlName="confirmPassword"
+        <input matInput type="password" formControlName="confirmPassword"
             [ngClass]="{'is-invalid': submitted && f.confirmPassword.errors}" placeholder="Bestätige dein Passwort:">
     </mat-form-field>
     <mat-error *ngIf="f.confirmPassword.touched && f.confirmPassword.errors && f.confirmPassword.errors.required">

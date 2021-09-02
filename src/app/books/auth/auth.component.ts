@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Router, ActivatedRoute } from '@angular/router';
+
+
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
@@ -7,9 +10,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthComponent implements OnInit {
 
-  constructor() { }
+  retUrl: string = '';
+
+  constructor(
+    private currentRoute: ActivatedRoute,
+    private router: Router,
+  ) { }
 
   ngOnInit(): void {
+    this.retUrl = this.currentRoute.snapshot.queryParams['retUrl'] || '/home';
   }
 
+  onLoginCompleted() {
+    this.router.navigate([this.retUrl]);
+  }
 }
