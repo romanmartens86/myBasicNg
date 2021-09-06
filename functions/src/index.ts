@@ -27,7 +27,7 @@ export const onRegister = functions
             user.photoURL = "";
         }
 
-        functions.firestore()
+        admin.firestore()
             .collection("users/u_default_groups/own_data")
             .doc(user.uid).set({
                 UID: user.uid,
@@ -40,7 +40,7 @@ export const onRegister = functions
                 rights: 0,
             });
 
-        functions.firestore()
+            admin.firestore()
             .collection("users/u_default_rights/accessRights")
             .doc(user.uid).set({
                 UID: user.uid,
@@ -48,8 +48,7 @@ export const onRegister = functions
             });
 
         functions.logger
-            .info("User has been created, uid:" + user.uid,
-                {structuredData: true});
+            .info("User has been created, uid:" + user.uid);
 
         return null;
     });
@@ -60,12 +59,12 @@ export const deleteUserData = functions
     .auth.user()
     .onDelete((user: any) => {
 
-        functions.firestore()
+        admin.firestore()
             .collection("users/u_default_groups/own_data")
             .doc(user.uid)
             .delete();
 
-        functions.firestore()
+            admin.firestore()
             .collection("users/u_default_rights/accessRights")
             .doc(user.uid)
             .delete();
