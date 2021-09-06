@@ -2,21 +2,71 @@ import { Injectable } from '@angular/core';
 
 import { AngularFireAuth } from '@angular/fire/auth';
 
-import { Observable } from 'rxjs';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { Subscription, Observable, BehaviorSubject } from 'rxjs';
 
 import firebase from 'firebase/app';
 import '@firebase/auth';
+import { booksPersonOwn } from '../interfaces/types';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
+  // userData firebaseInternal
+  private userObserver: Subscription;
+  private _currentUser = new BehaviorSubject<any>(null!);
+
+  // userData included in firestore
+  private _currentUserData = new BehaviorSubject<booksPersonOwn>(null!);
+  private _meRef: AngularFirestoreDocument = null!;
+
+
+
   user: Observable<any>;
 
-  constructor(private afAuth: AngularFireAuth) {
+  constructor(
+      private afAuth: AngularFireAuth,
+      private afs: AngularFirestore,
+    ) {
     this.user = afAuth.authState;
+
+    // subscription has to be unsubscribed onDestroy
+    this.userObserver = this.afAuth.user.subscribe(res => {
+      if (res && res.uid) {
+        console.log("AuthService: Subscription: user is logged in");
+        this._currentUser.next(res);
+
+        // also get the current User
+        // if it has not allready been downloaded
+        if (this._currentUserData.value == null) {
+          this.downloadMe();
+        }
+
+      } else {
+        console.log("AuthService: Subscription: user is not logged in");
+
+        // if user is not logged in anymore delete downloaded data:
+        this._currentUser.next(null);
+        this._currentUserData.next(null!);
+      }
+    });
   }
+
+
+  downloadMe() {
+    const me = "users/u_default_groups/own_data/" + this._currentUser.value.uid;
+    this._meRef = this.afs.doc<any>(me);
+    this._meRef.get().toPromise().then(res => {
+      this._currentUserData.next(res.data()!);
+    }, err => console.log('authService: error on downloading me data: ' + err));
+  }
+
+
+
+
+
 
   //+++++++++++++++++++++++++++++++++++++++++++++++++++++++
   // use providers to login user
@@ -99,7 +149,7 @@ export class AuthService {
           .then(res => {
             // reset all current user Data to null
             // to prevent showing "old data" from logged out user
-            // this._currentUserData.next(null);
+            this._currentUserData.next(null!);
             resolve(res)
           }, err => reject(err));
       } else {

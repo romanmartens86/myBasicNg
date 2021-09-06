@@ -12,3 +12,22 @@ export interface Student {
     class: number;
     contactMail: string[];
 }
+
+
+export interface booksPersonOwn {
+
+    name?: string;
+    email?: string;
+    thumb_picture?: string;
+    picture?: string;
+
+    UID?: string;
+
+    rights?: number;
+
+
+    // generic key
+    // name has to be a string
+    // value can be anything
+    [key: string]: any;
+}
