@@ -1,8 +1,60 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+
+    // by default all the database is forbidden to read/write
     match /{document=**} {
       allow read, write: if false;
+    }
+
+
+
+     // user and admin can update everything,
+     // 
+     // ++++++++++++++++++++++++++++++++++++++++++++++++++
+     // !!! except the role should be forbidden to write for User
+     // !!! admin is allowed to write role
+     // ++++++++++++++++++++++++++++++++++++++++++++++++++
+    match /users/u_default_groups/own_data/{user} {
+      allow read: if isSignedIn() && ( isOwnerOf(user) || isAdmin() );
+      allow update: if isSignedIn() && ( isOwnerOf(user) || isAdmin() ) 
+    }
+
+
+
+
+    function isAdmin() {
+      return request.auth.token.rights >= 1000;
+    }
+
+    function isLibManager() {
+      return request.auth.token.rights >= 500;
+    }
+
+    function isTeacher() {
+      return request.auth.token.rights >= 50;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+
+    function isOwnerOf(user) {
+      return request.auth.uid == user;
+    }
+
+
+    // returns the uid of the user that requested the data
+    function reqUID() {
+      // todo fehler wenn keine uid da ist
+      return request.auth.uid;
+    }
+
+
+    // to check if someone wants to write to rights
+    function writeNoRights() {
+      return ( !( 'rights' in request.resource.data ) )
     }
   }
 }
