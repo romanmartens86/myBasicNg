@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-social',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SocialComponent implements OnInit {
 
-  constructor() { }
+  @Output() successEmitter = new EventEmitter();
+
+  constructor(private authServ: AuthService) { }
+
+
 
   ngOnInit(): void {
+  }
+
+
+  login(provider: string) {
+    this.authServ.chooseProviderLogin(provider).then(res => this.successEmitter.emit(), err => { console.log(err) });
   }
 
 }

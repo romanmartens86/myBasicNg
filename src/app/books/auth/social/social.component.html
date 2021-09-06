@@ -1,10 +1,10 @@
 <div style="text-align: center;">
-    <button mat-raised-button class="socialButton">
+    <button (click)="login('google')" mat-raised-button class="socialButton">
         <img src="../../../../assets/External/icons8-google-48.png" alt="google icon">
         Login mit Google
     </button>
 
-    <button mat-raised-button class="socialButton">
+    <button (click)="login('facebook')" mat-raised-button class="socialButton">
         <img src="../../../../assets/External/icons8-facebook-48.png" alt="google icon">
         Login mit Facebook
     </button>
