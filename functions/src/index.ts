@@ -71,3 +71,45 @@ export const deleteUserData = functions
 
         return null;
     });
+
+
+
+    exports.updateUserAccessRights = functions.region('europe-west3').firestore
+    .document('users/u_default_rights/accessRights/{accRi}')
+    .onUpdate((change: any, context: any) => {
+
+        const prevData = change.before.data();
+        const newData = change.after.data();
+        const safeUID = context.params.accRi
+
+        // only when rights have changed, do something
+        if (newData.rights !== prevData.rights) {
+            console.log("updateUserAccessRights: RightsUpdate has to be performed.");
+
+            admin.auth().setCustomUserClaims(safeUID, { rights: newData.rights })
+            // The new custom claims will propagate to the user's ID token the
+            // next time a new one is issued.
+            // so the user has to log out and log in again
+            // console.log("updateUserAccessRights: CustomClaims have been set from level: " + prevData.rights + " to level: " + newData.rights + " for userUID: " + safeUID);
+
+
+            // now we have to update userOwn data - so that the users sees the updated rights
+            admin.firestore().collection("users/u_default_groups/own_data")
+                .doc(safeUID)
+                .update({
+                    rights: newData.rights,
+                }).then(() => {
+                    console.log("updateUserAccessRights: Rights have been updated from: " + prevData.rights + " to level: " + newData.rights + " for userUID: " + safeUID);
+
+                }, () => {
+
+                    // there was some error, so return false
+                    console.log("updateUserAccessRights: Rights update failed from level: " + prevData.rights + " to level: " + newData.rights + " for userUID: " + safeUID + " error: ");
+                });
+
+        } else {
+            // there was nothing to do, so just do nothing
+        }
+
+        return true;
+    });
