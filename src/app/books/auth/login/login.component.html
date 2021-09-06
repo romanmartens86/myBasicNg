@@ -1,1 +1,48 @@
-<p>login works!</p>
+
+
+<h1 style="text-align: center;">Login</h1>
+
+<form [formGroup]='form' (ngSubmit)="onSubmit()" fxLayout="column center">
+
+
+    <!-- ***** -->
+    <!-- Email -->
+    <!-- ***** -->
+    <mat-form-field class="inputField">
+        <input matInput type="text" formControlName="email" [ngClass]="{'is-invalid': submitted && f.email.errors}"
+            placeholder="Email-Adresse:">
+    </mat-form-field>
+    <mat-error *ngIf="f.email.touched && f.email.errors && f.email.errors.required">
+        Bitte gebe eine gültige Mail-Adresse an.
+    </mat-error>
+    <mat-error *ngIf="f.email.touched && f.email.errors && f.email.errors.email">
+        Bitte gebe eine gültige Mail-Adresse an.
+    </mat-error>
+
+    <!-- ******** -->
+    <!-- Password -->
+    <!-- ******** -->
+    <mat-form-field class="inputField">
+        <input matInput type="password" formControlName="password"
+            [ngClass]="{'is-invalid': submitted && f.password.errors}" placeholder="Passwort:">
+    </mat-form-field>
+    <mat-error *ngIf="f.password.touched && f.password.errors && f.password.errors.required">
+        Bitte gebe ein Passwort an.
+    </mat-error>
+    <mat-error *ngIf="f.password.touched && f.password.errors && f.password.errors.minLength">
+        Dein Passwort braucht mindestens 6 Zeichen.
+    </mat-error>
+    <mat-error *ngIf="f.password.touched && f.password.errors && f.password.errors.maxLength">
+        Dein Passwort muss weniger als 40 Zeichen haben. Was willst du überhaupt mit so einem riesen Passwort?
+    </mat-error>
+
+   
+    <!-- ************ -->
+    <!-- Login Button -->
+    <!-- ************ -->
+
+    <div style="text-align: center; margin-top: 20px;">
+        <button mat-raised-button color="primary">Login</button>
+    </div>
+
+</form>

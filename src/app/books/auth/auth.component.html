@@ -1,14 +1,18 @@
 <img src="../../../assets/Icons/icon-192x192.png" alt="Logo Schule"
     style="max-width: 50%; margin: auto; display: block; padding-top: 10%;">
 
-<div style="width: 350px; margin: auto;">
+<div *ngIf="!register" style="width: 350px; margin: auto;">
     <app-login (successEmitter)="onLoginCompleted()"></app-login>
 </div>
 
+<p style="margin-top: 20px;" *ngIf="!register">Noch nicht registriert, hier kannst du dich auch <a href="" (click)="register = true">Registrieren.</a></p>
 
-<div style="width: 350px; margin: auto;">
+
+<div *ngIf="register" style="width: 350px; margin: auto;">
     <app-register (successEmitter)="onLoginCompleted()"></app-register>
 </div>
+
+<p style="margin-top: 20px;" *ngIf="register">Zurück zum <a href="" (click)="register = false">Login.</a></p>
 
 
 <div style="width: 350px; margin: auto; margin-top: 10%;">

@@ -11,6 +11,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class AuthComponent implements OnInit {
 
   retUrl: string = '';
+  register: boolean = false;
 
   constructor(
     private currentRoute: ActivatedRoute,
