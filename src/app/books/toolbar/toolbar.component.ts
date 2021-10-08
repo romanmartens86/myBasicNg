@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 import {MatToolbarModule} from '@angular/material/toolbar';
+import { Router } from '@angular/router';
+
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'books-toolbar',
@@ -9,9 +12,19 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 })
 export class ToolbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private authServ: AuthService,
+    private router: Router,
+  ) { }
 
   ngOnInit(): void {
+  }
+
+
+  callLogout() {
+    this.authServ.doLogout().then(res => {
+      this.router.navigate(['/login']);
+    }, err => console.log('Error on Logout: ' + err));
   }
 
 }

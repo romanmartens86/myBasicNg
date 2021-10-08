@@ -28,6 +28,8 @@ import { RegisterComponent } from './books/auth/register/register.component';
 import { SocialComponent } from './books/auth/social/social.component';
 import { ThanksComponent } from './books/overhead/thanks/thanks.component';
 import { LegalComponent } from './books/overhead/legal/legal.component';
+import { UserComponent } from './books/auth/user/user.component';
+import { MeComponent } from './books/auth/user/me/me.component';
 
 
 
@@ -42,7 +44,9 @@ import { LegalComponent } from './books/overhead/legal/legal.component';
     RegisterComponent,
     SocialComponent,
     ThanksComponent,
-    LegalComponent
+    LegalComponent,
+    UserComponent,
+    MeComponent
   ],
   imports: [
     BrowserModule,

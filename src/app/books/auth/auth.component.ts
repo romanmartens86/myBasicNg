@@ -19,7 +19,7 @@ export class AuthComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.retUrl = this.currentRoute.snapshot.queryParams['retUrl'] || '/home';
+    this.retUrl = this.currentRoute.snapshot.queryParams['retUrl'] || '/landing';
   }
 
   onLoginCompleted() {
