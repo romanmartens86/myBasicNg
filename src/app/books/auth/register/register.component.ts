@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 
 import { AuthService } from 'src/app/services/auth.service';
 import Validation from '../../../classes/validation';
@@ -13,11 +13,11 @@ export class RegisterComponent implements OnInit {
 
   @Output() successEmitter = new EventEmitter();
 
-  form!: FormGroup;
+  form!: UntypedFormGroup;
   submitted: boolean = false;
 
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private authServ: AuthService,
   ) { }
 
