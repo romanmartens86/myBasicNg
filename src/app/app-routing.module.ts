@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { AuthComponent } from './books/auth/auth.component';
 import { UserComponent } from './books/auth/user/user.component';
-
 import { LandingComponent } from './books/landing/landing.component';
 import { ScanningComponent } from './books/scanning/scanning.component';
 
