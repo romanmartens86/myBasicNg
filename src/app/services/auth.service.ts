@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 
-import { AngularFireAuth } from '@angular/fire/compat/auth';
+import firebase from '@firebase/app-compat';
 
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { Subscription, Observable, BehaviorSubject } from 'rxjs';
 
-import firebase from 'firebase/compat/app';
 
 import { booksPersonOwn } from '../interfaces/types';
 
